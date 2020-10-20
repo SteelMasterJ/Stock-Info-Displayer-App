@@ -29,23 +29,26 @@ const SearchForm = (props) => {
   }
   
   return (
-    <div class="container mt-4">
-        <form className="search-form form-inline my-2 my-lg-0" onSubmit={handleSubmit} >
-        <input 
-              className="form-control mr-sm-2"
-              type="search" 
-              onChange={handleValueChange}
-              name="search"
-              //ref={(input) => this.query = input}
-              placeholder="Search"
-              aria-label="Search"
-              required
-              />
-        <button type="submit" id="submit" className="search-button btn btn-outline-info my-2 my-sm-0">
-          Search
-        </button>
-    </form>  
-    </div>    
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <div class="navbar-brand">Graham Number Stock Displayer</div>
+        <div class="container mt-4">
+          <form className="search-form form-inline my-2 my-lg-0" onSubmit={handleSubmit} >
+            <input 
+                  className="form-control mr-sm-2"
+                  type="search" 
+                  onChange={handleValueChange}
+                  name="search"
+                  //ref={(input) => this.query = input}
+                  placeholder="Search"
+                  aria-label="Search"
+                  required
+                  />
+            <button type="submit" id="submit" className="search-button btn btn-outline-info my-2 my-sm-0">
+              Search
+            </button>
+          </form>  
+        </div> 
+    </nav>  
   );
 }
 

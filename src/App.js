@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import axios from 'axios';
 
 import SearchBar from './components/SearchBar';
 import Profile from './components/Profile';
@@ -9,10 +10,25 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      pictures: [],
-      loading: true,
-      searchWord: 'hi'
+      searchTicker: 'AAPL'
     };
+  }
+
+  performSearch = (query) => {
+    console.log('performSearch has fired', query);
+    if(this.state.searchTicker !== query) {
+      axios.get(`https://sandbox.iexapis.com/stable/stock/${query}/earnings?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}`)
+        .then(response => {
+          this.setState({
+            stockData: response.data.photos.photo,
+            searchTicker: query
+          })
+          this.handleLoading();
+        })
+        .catch(error => {
+          console.log('Error fetching and parsing data', error);
+        });
+    }
   }
 
   //https://sandbox.iexapis.com/stable/stock/aapl/earnings?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}

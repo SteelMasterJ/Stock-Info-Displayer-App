@@ -10,25 +10,38 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchTicker: 'AAPL'
+      searchTicker: 'AAPL',
+      ticker: "AAPL",
+      companyName: "Apple, Inc.",
+      businessType: "Technology",
+      websiteUrl: "https://www.apple.com/"
     };
   }
 
-  performSearch = (query) => {
-    console.log('performSearch has fired', query);
-    if(this.state.searchTicker !== query) {
-      axios.get(`https://sandbox.iexapis.com/stable/stock/${query}/earnings?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}`)
+  performSearch = () => {
+    console.log('performSearch has fired', this.state.searchTicker);
+    if(this.state.searchTicker !== "f") {
+      axios.get(`https://sandbox.iexapis.com/stable/stock/${this.state.searchTicker}/company?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}`)
+        // .then(response => {
+        //   this.setState({
+        //     ticker: response.data.symbol,
+        //     companyName: response.data.companyName,
+        //     businessType: response.data.industry,
+        //     websiteUrl: response.data.website
+        //   })
+        //   this.handleLoading();
+        // })
         .then(response => {
-          this.setState({
-            stockData: response.data.photos.photo,
-            searchTicker: query
-          })
-          this.handleLoading();
+          console.log(response.data);
         })
         .catch(error => {
           console.log('Error fetching and parsing data', error);
         });
     }
+  }
+
+  componentDidMount() {
+    this.performSearch();
   }
 
   //https://sandbox.iexapis.com/stable/stock/aapl/earnings?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}
@@ -45,7 +58,7 @@ class App extends Component {
         <header className="App-header">
         </header>
         <SearchBar />
-        <Profile companyName="Apple" ticker="AAPL" businessType="Technology" websiteUrl="https://www.apple.com" />
+        <Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} />
         {/* CDN dcript links */}
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

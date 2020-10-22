@@ -23,6 +23,7 @@ const SearchForm = (props) => {
       pathname: `/search/${formValues.search}`
     })
     console.log('1st console log ' + formValues.search);
+    props.submitTickerUpdate(formValues.search);
     props.onSearch(formValues.search);
     e.currentTarget.reset();
     console.log('2nd console log ' + formValues.search);

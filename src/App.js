@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 
 import SearchBar from './components/SearchBar';
 import Profile from './components/Profile';
+import ForOhFor from './components/ForOhFor';
 
 class App extends Component {
 
@@ -41,6 +42,7 @@ class App extends Component {
   }
 
   //https://sandbox.iexapis.com/stable/stock/aapl/earnings?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}
+  //<Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} />   
 
   render() {
     return (
@@ -53,8 +55,12 @@ class App extends Component {
         </head>
         <header className="App-header">
         </header>
-        <SearchBar />
-        <Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} />
+        <SearchBar onSearch={this.performSearch} />
+        <Switch>
+          <Route exact path="/search/:id" render={ () => <Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} /> } />
+          <Route exact path="/" render={ () => <Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} />} />
+          <Route component={ForOhFor} />
+        </Switch> 
         {/* CDN dcript links */}
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

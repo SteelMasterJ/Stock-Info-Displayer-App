@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
+import apikey from './config';
 
 import SearchBar from './components/SearchBar';
 import Profile from './components/Profile';
@@ -15,7 +16,10 @@ class App extends Component {
       ticker: "AAPL",
       companyName: "Apple, Inc.",
       businessType: "Technology",
-      websiteUrl: "https://www.apple.com/"
+      websiteUrl: "https://finviz.com/",
+      bookValue: "",
+      DividendPerShare: "",
+      eps: "",
     };
   }
 
@@ -26,29 +30,64 @@ class App extends Component {
     })
   }
 
+  // performSearch = (query) => {
+  //   console.log('performSearch has fired', this.state.searchTicker, query);
+  //   if(query == null) {
+  //     axios.get(`https://sandbox.iexapis.com/stable/stock/${this.state.searchTicker}/company?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}`)
+  //       .then(response => {
+  //         this.setState({
+  //           ticker: response.data.symbol,
+  //           companyName: response.data.companyName,
+  //           businessType: response.data.industry,
+  //           websiteUrl: response.data.website,
+  //         })
+  //       })
+  //       .catch(error => {
+  //         console.log('Error fetching and parsing data', error);
+  //       });
+  //   } else {
+  //     axios.get(`https://sandbox.iexapis.com/stable/stock/${query}/company?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}`)
+  //       .then(response => {
+  //         this.setState({
+  //           ticker: response.data.symbol,
+  //           companyName: response.data.companyName,
+  //           businessType: response.data.industry,
+  //           websiteUrl: response.data.website
+  //         })
+  //       })
+  //       .catch(error => {
+  //         console.log('Error fetching and parsing data', error);
+  //       });
+  //   }
+  // }
+
   performSearch = (query) => {
     console.log('performSearch has fired', this.state.searchTicker, query);
-    if(query == null) {
-      axios.get(`https://sandbox.iexapis.com/stable/stock/${this.state.searchTicker}/company?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}`)
+    if(query === undefined) {
+      axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.searchTicker}&apikey=${apikey}`)
         .then(response => {
           this.setState({
-            ticker: response.data.symbol,
-            companyName: response.data.companyName,
-            businessType: response.data.industry,
-            websiteUrl: response.data.website
+            ticker: response.data.Symbol,
+            companyName: response.data.Name,
+            businessType: response.data.Industry,
+            bookValue: response.data.BookValue,
+            DividendPerShare: response.data.DividendPerShare,
+            eps: response.data.EPS,
           })
         })
         .catch(error => {
           console.log('Error fetching and parsing data', error);
         });
     } else {
-      axios.get(`https://sandbox.iexapis.com/stable/stock/${query}/company?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}`)
+      axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${query}&apikey=${apikey}`)
         .then(response => {
           this.setState({
-            ticker: response.data.symbol,
-            companyName: response.data.companyName,
-            businessType: response.data.industry,
-            websiteUrl: response.data.website
+            ticker: response.data.Symbol,
+            companyName: response.data.Name,
+            businessType: response.data.Industry,
+            bookValue: response.data.BookValue,
+            DividendPerShare: response.data.DividendPerShare,
+            eps: response.data.EPS,
           })
         })
         .catch(error => {
@@ -78,8 +117,8 @@ class App extends Component {
         </header>
         <SearchBar onSearch={this.performSearch} submitTickerUpdate={this.updateSearchTicker}/>
         <Switch>
-          <Route exact path="/search/:id" render={ () => <Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} performSearch={this.performSearch} /> } />
-          <Route exact path="/" render={ () => <Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} performSearch={this.performSearch} />} />
+          <Route exact path="/search/:id" render={ () => <Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} bookValue={this.state.bookValue} DividendPerShare={this.state.DividendPerShare} eps={this.state.eps} performSearch={this.performSearch} /> } />
+          <Route exact path="/" render={ () => <Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} bookValue={this.state.bookValue} DividendPerShare={this.state.DividendPerShare} eps={this.state.eps} performSearch={this.performSearch} />} />
           <Route component={ForOhFor} />
         </Switch> 
         {/* CDN script links */}

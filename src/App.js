@@ -22,17 +22,13 @@ class App extends Component {
     console.log('performSearch has fired', this.state.searchTicker);
     if(this.state.searchTicker !== "f") {
       axios.get(`https://sandbox.iexapis.com/stable/stock/${this.state.searchTicker}/company?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}`)
-        // .then(response => {
-        //   this.setState({
-        //     ticker: response.data.symbol,
-        //     companyName: response.data.companyName,
-        //     businessType: response.data.industry,
-        //     websiteUrl: response.data.website
-        //   })
-        //   this.handleLoading();
-        // })
         .then(response => {
-          console.log(response.data);
+          this.setState({
+            ticker: response.data.symbol,
+            companyName: response.data.companyName,
+            businessType: response.data.industry,
+            websiteUrl: response.data.website
+          })
         })
         .catch(error => {
           console.log('Error fetching and parsing data', error);

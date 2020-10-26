@@ -30,9 +30,9 @@ const SearchForm = (props) => {
   }
   
   return (
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-      <div class="navbar-brand">Graham Number Stock Displayer</div>
-        <div class="container mt-4">
+    <nav className="navbar navbar-expand-sm navbar-light bg-light">
+      <div className="navbar-brand">Graham Number Stock Displayer</div>
+        <div className="container mt-4">
           <form className="search-form form-inline ml-auto" onSubmit={handleSubmit} >
             <input 
                   className="form-control mr-sm-2"

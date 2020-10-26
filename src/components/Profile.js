@@ -15,7 +15,7 @@ const Profile = props => (
                     <li className="list-group-item">Book Value: {props.bookValue}</li>
                     <li className="list-group-item">Dividend Per Share: {props.DividendPerShare}</li>
                     <li className="list-group-item">Earnings Per Share (Diluted, Trailing Tweleve Months): {props.eps}</li>
-                    <li className="list-group-item">Graham Number: {isNaN(Math.sqrt(22.5 * props.bookValue * props.eps)) ? "Not Calculatable using the Graham Formula (Don't buy this stock)" : Math.sqrt(22.5 * props.bookValue * props.eps)}</li>
+                    <li className="list-group-item">Graham Number: {isNaN(Math.sqrt(22.5 * props.bookValue * props.eps)) ? "Don't buy this stock, it's fundamentals are flawed and/or some of its financial data is missing" : Math.sqrt(22.5 * props.bookValue * props.eps)}</li>
                 </ul>
             </div>
         </div>

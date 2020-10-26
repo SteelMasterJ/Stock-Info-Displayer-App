@@ -9,7 +9,8 @@ const Profile = props => (
                     <div class="card-body">
                         <h5 class="card-title">{props.ticker}</h5>
                         <p class="card-text">{props.businessType}</p>
-                        <a rel="noopener noreferrer" href={"https://finviz.com/quote.ashx?t=" + props.ticker} class="btn btn-primary" target="_blank">Company Website</a>
+                        <p class="card-text font-weight-light">{props.description}</p>
+                        <a rel="noopener noreferrer" href={"https://finviz.com/quote.ashx?t=" + props.ticker} class="btn btn-primary" target="_blank">More Info</a>
                     </div>
                     <ul class="list-group list-group-flush card-body">
                         <li class="list-group-item">Book Value: {props.bookValue}</li>

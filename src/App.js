@@ -16,6 +16,7 @@ class App extends Component {
       ticker: "AAPL",
       companyName: "Apple, Inc.",
       businessType: "Technology",
+      description: "",
       websiteUrl: "https://finviz.com/",
       bookValue: "",
       DividendPerShare: "",
@@ -30,37 +31,6 @@ class App extends Component {
     })
   }
 
-  // performSearch = (query) => {
-  //   console.log('performSearch has fired', this.state.searchTicker, query);
-  //   if(query == null) {
-  //     axios.get(`https://sandbox.iexapis.com/stable/stock/${this.state.searchTicker}/company?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}`)
-  //       .then(response => {
-  //         this.setState({
-  //           ticker: response.data.symbol,
-  //           companyName: response.data.companyName,
-  //           businessType: response.data.industry,
-  //           websiteUrl: response.data.website,
-  //         })
-  //       })
-  //       .catch(error => {
-  //         console.log('Error fetching and parsing data', error);
-  //       });
-  //   } else {
-  //     axios.get(`https://sandbox.iexapis.com/stable/stock/${query}/company?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}`)
-  //       .then(response => {
-  //         this.setState({
-  //           ticker: response.data.symbol,
-  //           companyName: response.data.companyName,
-  //           businessType: response.data.industry,
-  //           websiteUrl: response.data.website
-  //         })
-  //       })
-  //       .catch(error => {
-  //         console.log('Error fetching and parsing data', error);
-  //       });
-  //   }
-  // }
-
   performSearch = (query) => {
     console.log('performSearch has fired', this.state.searchTicker, query);
     if(query === undefined) {
@@ -70,6 +40,7 @@ class App extends Component {
             ticker: response.data.Symbol,
             companyName: response.data.Name,
             businessType: response.data.Industry,
+            description: response.data.Description,
             bookValue: response.data.BookValue,
             DividendPerShare: response.data.DividendPerShare,
             eps: response.data.EPS,
@@ -117,8 +88,26 @@ class App extends Component {
         </header>
         <SearchBar onSearch={this.performSearch} submitTickerUpdate={this.updateSearchTicker}/>
         <Switch>
-          <Route exact path="/search/:id" render={ () => <Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} bookValue={this.state.bookValue} DividendPerShare={this.state.DividendPerShare} eps={this.state.eps} performSearch={this.performSearch} /> } />
-          <Route exact path="/" render={ () => <Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} bookValue={this.state.bookValue} DividendPerShare={this.state.DividendPerShare} eps={this.state.eps} performSearch={this.performSearch} />} />
+          <Route exact path="/search/:id" render={ () => <Profile 
+            companyName={this.state.companyName} 
+            ticker={this.state.ticker} 
+            businessType={this.state.businessType} 
+            websiteUrl={this.state.websiteUrl} 
+            bookValue={this.state.bookValue} 
+            DividendPerShare={this.state.DividendPerShare} 
+            eps={this.state.eps} 
+            description={this.state.description}
+            performSearch={this.performSearch} /> } />
+          <Route exact path="/" render={ () => <Profile 
+            companyName={this.state.companyName} 
+            ticker={this.state.ticker} 
+            businessType={this.state.businessType} 
+            websiteUrl={this.state.websiteUrl} 
+            bookValue={this.state.bookValue} 
+            DividendPerShare={this.state.DividendPerShare} 
+            eps={this.state.eps} 
+            description={this.state.description}
+            performSearch={this.performSearch} />} />
           <Route component={ForOhFor} />
         </Switch> 
         {/* CDN script links */}

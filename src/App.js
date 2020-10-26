@@ -43,7 +43,7 @@ class App extends Component {
             description: response.data.Description,
             bookValue: response.data.BookValue,
             DividendPerShare: response.data.DividendPerShare,
-            eps: response.data.EPS,
+            eps: response.data.DilutedEPSTTM,
           })
         })
         .catch(error => {
@@ -56,9 +56,10 @@ class App extends Component {
             ticker: response.data.Symbol,
             companyName: response.data.Name,
             businessType: response.data.Industry,
+            description: response.data.Description,
             bookValue: response.data.BookValue,
             DividendPerShare: response.data.DividendPerShare,
-            eps: response.data.EPS,
+            eps: response.data.DilutedEPSTTM,
           })
         })
         .catch(error => {
@@ -95,7 +96,8 @@ class App extends Component {
             DividendPerShare={this.state.DividendPerShare} 
             eps={this.state.eps} 
             description={this.state.description}
-            performSearch={this.performSearch} /> } />
+            performSearch={this.performSearch} /> } 
+            />
           <Route exact path="/" render={ () => <Profile 
             companyName={this.state.companyName} 
             ticker={this.state.ticker} 
@@ -105,7 +107,8 @@ class App extends Component {
             DividendPerShare={this.state.DividendPerShare} 
             eps={this.state.eps} 
             description={this.state.description}
-            performSearch={this.performSearch} />} />
+            performSearch={this.performSearch} />} 
+            />
           <Route component={ForOhFor} />
         </Switch> 
         {/* CDN script links */}

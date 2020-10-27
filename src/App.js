@@ -17,7 +17,6 @@ class App extends Component {
       companyName: "Apple, Inc.",
       businessType: "Technology",
       description: "",
-      websiteUrl: "https://finviz.com/",
       bookValue: "",
       DividendPerShare: "",
       eps: "",
@@ -60,6 +59,7 @@ class App extends Component {
             bookValue: response.data.BookValue,
             DividendPerShare: response.data.DividendPerShare,
             eps: response.data.DilutedEPSTTM,
+            searchTicker: response.data.Symbol,
           })
         })
         .catch(error => {
@@ -85,7 +85,7 @@ class App extends Component {
         <title>Stock Displayer Pro</title>
         <header className="App-header">
         </header>
-        <SearchBar onSearch={this.performSearch} submitTickerUpdate={this.updateSearchTicker}/>
+        <SearchBar onSearch={this.performSearch} submitTickerUpdate={this.updateSearchTicker} searchTicker={this.state.searchTicker}/>
         <Switch>
           <Route exact path="/search/:id" render={ () => <Profile 
             companyName={this.state.companyName} 

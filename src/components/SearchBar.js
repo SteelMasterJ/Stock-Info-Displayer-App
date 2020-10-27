@@ -4,6 +4,12 @@ import { useHistory } from 'react-router-dom';
 const SearchForm = (props) => {
   
   const history = useHistory();
+  // const location = useLocation();
+
+  // React.useEffect( () => {
+  //   console.log('location = ', location.pathname);
+  //   (location.pathname.slice(8) === props.searchTicker) ? props.onSearch('aapl') : props.onSearch(location.pathname.slice(8));
+  // }, [location.pathname, props]);
 
   const [formValues, setFormValues] = React.useState({})
 

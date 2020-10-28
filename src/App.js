@@ -12,10 +12,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchTicker: 'AAPL',
-      ticker: "AAPL",
-      companyName: "Apple, Inc.",
-      businessType: "Technology",
+      searchTicker: '',
+      ticker: "",
+      companyName: "",
+      businessType: "",
       description: "",
       bookValue: "",
       DividendPerShare: "",
@@ -30,10 +30,34 @@ class App extends Component {
     })
   }
 
+  locationSearch = (location) => {
+    console.log('locationSearch has fired', this.state.searchTicker, location);
+    // eslint-disable-next-line
+    if (location != this.state.searchTicker) {
+      axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${location}&apikey=${apikey}`)
+        .then(response => {
+          console.log(response.data);
+          this.setState({
+            ticker: response.data.Symbol,
+            companyName: response.data.Name,
+            businessType: response.data.Industry,
+            description: response.data.Description,
+            bookValue: response.data.BookValue,
+            DividendPerShare: response.data.DividendPerShare,
+            eps: response.data.DilutedEPSTTM,
+            searchTicker: location,
+          })
+        })
+        .catch(error => {
+          console.log('Error fetching and parsing data', error);
+        });
+    }
+  }
+
   performSearch = (query) => {
     console.log('performSearch has fired', this.state.searchTicker, query);
     if(query === undefined) {
-      axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${this.state.searchTicker}&apikey=${apikey}`)
+      axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=aapl&apikey=${apikey}`)
         .then(response => {
           this.setState({
             ticker: response.data.Symbol,
@@ -43,6 +67,7 @@ class App extends Component {
             bookValue: response.data.BookValue,
             DividendPerShare: response.data.DividendPerShare,
             eps: response.data.DilutedEPSTTM,
+            searchTicker: response.data.Symbol,
           })
         })
         .catch(error => {
@@ -70,7 +95,7 @@ class App extends Component {
 
   componentDidMount() {
     console.log("componentDidMount");
-    this.performSearch();
+    this.performSearch('aapl');
   }
 
   //https://sandbox.iexapis.com/stable/stock/aapl/earnings?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}
@@ -85,7 +110,7 @@ class App extends Component {
         <title>Stock Displayer Pro</title>
         <header className="App-header">
         </header>
-        <SearchBar onSearch={this.performSearch} submitTickerUpdate={this.updateSearchTicker} searchTicker={this.state.searchTicker}/>
+        <SearchBar onSearch={this.performSearch} submitTickerUpdate={this.updateSearchTicker} searchTicker={this.state.searchTicker} locationSearch={this.locationSearch}/>
         <Switch>
           <Route exact path="/search/:id" render={ () => <Profile 
             companyName={this.state.companyName} 

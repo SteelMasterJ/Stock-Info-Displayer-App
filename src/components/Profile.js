@@ -1,5 +1,7 @@
 import React from 'react';
 
+//props.description.length >= 900 ? props.description.slice(0, 750) + "..." : props.description
+
 const Profile = props => (
     <div className="App">
         <div className="container">
@@ -8,7 +10,7 @@ const Profile = props => (
                 <div className="card-body">
                     <h5 className="card-title">{props.ticker}</h5>
                     <p className="card-text">{props.businessType}</p>
-                    <p className="card-text font-weight-light">{props.description.length >= 900 ? props.description.slice(0, 750) + "..." : props.description}</p>
+                    <p className="card-text font-weight-light">{props.description}</p>
                     <a rel="noopener noreferrer" href={"https://finviz.com/quote.ashx?t=" + props.ticker} className="btn btn-primary" target="_blank">More Info</a>
                 </div>
                 <ul className="list-group list-group-flush card-body">

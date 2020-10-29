@@ -20,6 +20,7 @@ class App extends Component {
       bookValue: "",
       DividendPerShare: "",
       eps: "",
+      error: "",
     };
   }
 
@@ -60,24 +61,36 @@ class App extends Component {
       axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=aapl&apikey=${apikey}`)
         .then(response => {
           console.log(response.data);
-          this.setState({
-            ticker: response.data.Symbol,
-            companyName: response.data.Name,
-            businessType: response.data.Industry,
-            description: response.data.Description,
-            bookValue: response.data.BookValue,
-            DividendPerShare: response.data.DividendPerShare,
-            eps: response.data.DilutedEPSTTM,
-            searchTicker: response.data.Symbol,
-          })
+          if (response.data.Note === "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.") {
+            this.setState({
+              error: "Too many requests, please wait 1 minute"
+            })
+          } else {
+            this.setState({
+              ticker: response.data.Symbol,
+              companyName: response.data.Name,
+              businessType: response.data.Industry,
+              description: response.data.Description,
+              bookValue: response.data.BookValue,
+              DividendPerShare: response.data.DividendPerShare,
+              eps: response.data.DilutedEPSTTM,
+              searchTicker: response.data.Symbol,
+              error: "",
+            })
+          }
         })
         .catch(error => {
           console.log('Error fetching and parsing data', error);
         });
     } else {
       axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${query}&apikey=${apikey}`)
-        .then(response => {
-          console.log(response.data);
+      .then(response => {
+        console.log(response.data);
+        if (response.data.Note === "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.") {
+          this.setState({
+            error: "Too many requests, please wait 1 minute"
+          })
+        } else {
           this.setState({
             ticker: response.data.Symbol,
             companyName: response.data.Name,
@@ -87,11 +100,13 @@ class App extends Component {
             DividendPerShare: response.data.DividendPerShare,
             eps: response.data.DilutedEPSTTM,
             searchTicker: response.data.Symbol,
+            error: "",
           })
-        })
-        .catch(error => {
-          console.log('Error fetching and parsing data', error);
-        });
+        }
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data', error);
+      });
     }
   }
 
@@ -112,7 +127,7 @@ class App extends Component {
         <title>Stock Displayer Pro</title>
         <header className="App-header">
         </header>
-        <SearchBar onSearch={this.performSearch} submitTickerUpdate={this.updateSearchTicker} searchTicker={this.state.searchTicker} locationSearch={this.locationSearch}/>
+        <SearchBar onSearch={this.performSearch} submitTickerUpdate={this.updateSearchTicker} searchTicker={this.state.searchTicker} locationSearch={this.locationSearch} error={this.state.error}/>
         <Switch>
           <Route exact path="/search/:id" render={ () => <Profile 
             companyName={this.state.companyName} 

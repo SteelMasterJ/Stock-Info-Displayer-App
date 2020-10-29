@@ -59,6 +59,7 @@ class App extends Component {
     if(query === undefined) {
       axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=aapl&apikey=${apikey}`)
         .then(response => {
+          console.log(response.data);
           this.setState({
             ticker: response.data.Symbol,
             companyName: response.data.Name,
@@ -76,6 +77,7 @@ class App extends Component {
     } else {
       axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${query}&apikey=${apikey}`)
         .then(response => {
+          console.log(response.data);
           this.setState({
             ticker: response.data.Symbol,
             companyName: response.data.Name,

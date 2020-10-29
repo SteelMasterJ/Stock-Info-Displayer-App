@@ -1,18 +1,18 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const SearchForm = (props) => {
   
   const history = useHistory();
-  const location = useLocation();
+  // const location = useLocation();
 
-  React.useEffect( () => {
-    console.log('location = ', location.pathname, ",", location.pathname.slice(8), ",", props.searchTicker);
-  }, [location.pathname, props]);
+  // React.useEffect( () => {
+  //   console.log('location = ', location.pathname, ",", location.pathname.slice(8), ",", props.searchTicker);
+  // }, [location.pathname, props]);
 
-  if (location.pathname !== '/') {
-    props.locationSearch(location.pathname.slice(8));
-  }
+  // if (location.pathname !== '/') {
+  //   props.locationSearch(location.pathname.slice(8));
+  // }
 
   const [formValues, setFormValues] = React.useState({})
 

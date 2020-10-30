@@ -20,6 +20,9 @@ const Profile = props => (
                     <li className="list-group-item">Graham Number: {isNaN(Math.sqrt(22.5 * props.bookValue * props.eps)) ? "Don't buy this stock, it's fundamentals are flawed and/or some of its financial data is missing" : Math.sqrt(22.5 * props.bookValue * props.eps)}</li>
                 </ul>
             </div>
+            <footer>
+            <p className="text-right"><small>2020 JoeyCorp®</small></p>
+             </footer>
         </div>
     </div>
 );

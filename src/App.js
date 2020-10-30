@@ -60,10 +60,14 @@ class App extends Component {
     if(query === undefined) {
       axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=aapl&apikey=${apikey}`)
         .then(response => {
-          console.log(response.data);
+          console.log(response.data.length);
           if (response.data.Note === "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.") {
             this.setState({
               error: "Too many requests, please wait 1 minute"
+            })
+          } else if (JSON.stringify(response.data) === "{}") {
+            this.setState({
+              error: "Stock Data Not Found, Try Again"
             })
           } else {
             this.setState({
@@ -89,6 +93,10 @@ class App extends Component {
         if (response.data.Note === "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.") {
           this.setState({
             error: "Too many requests, please wait 1 minute"
+          })
+        } else if (JSON.stringify(response.data) === "{}") {
+          this.setState({
+            error: "Stock Data Not Found, Try Again"
           })
         } else {
           this.setState({

@@ -41,24 +41,29 @@ const SearchForm = (props) => {
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light">
       <div className="navbar-brand">Graham Number Stock Displayer</div>
-        <div className="container mt-4">
-          <form className="search-form form-inline ml-auto" onSubmit={handleSubmit} >
-            {(props.error === "Too many requests, please wait 1 minute" || "Stock Data Not Found, Try Again") ? <div className="text-danger">{props.error}</div> : <div></div> }
-            <input 
-                  className="form-control mr-sm-2"
-                  type="search" 
-                  onChange={handleValueChange}
-                  name="search"
-                  //ref={(input) => this.query = input}
-                  placeholder="Search"
-                  aria-label="Search"
-                  required
-                  />
-            <button type="submit" id="submit" className="search-button btn btn-outline-info my-2 my-sm-0">
-              Search
-            </button>
-          </form>  
-        </div> 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          </ul>
+        </div>
+        <form className="search-form form-inline ml-auto" onSubmit={handleSubmit} >
+          {(props.error === "Too many requests, please wait 1 minute" || "Stock Data Not Found, Try Again") ? <div className="text-danger">{props.error}</div> : <div></div> }
+          <input 
+                className="form-control mr-sm-2"
+                type="search" 
+                onChange={handleValueChange}
+                name="search"
+                //ref={(input) => this.query = input}
+                placeholder="Search"
+                aria-label="Search"
+                required
+                />
+          <button type="submit" id="submit" className="search-button btn btn-outline-info my-2 my-sm-0">
+            Search
+          </button>
+        </form>  
     </nav>  
   );
 }

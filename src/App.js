@@ -6,6 +6,7 @@ import apikey from './config';
 import SearchBar from './components/SearchBar';
 import Profile from './components/Profile';
 import ForOhFor from './components/ForOhFor';
+import About from './components/About';
 
 class App extends Component {
 
@@ -159,6 +160,7 @@ class App extends Component {
             description={this.state.description}
             performSearch={this.performSearch} />} 
             />
+          <Route exact path="/about" render={ () => <About/>}/>
           <Route component={ForOhFor} />
         </Switch> 
         {/* CDN script links */}

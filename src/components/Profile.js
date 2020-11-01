@@ -1,7 +1,5 @@
 import React from 'react';
 
-//props.description.length >= 900 ? props.description.slice(0, 750) + "..." : props.description
-
 const Profile = props => (
     <div className="App">
         <div className="container">

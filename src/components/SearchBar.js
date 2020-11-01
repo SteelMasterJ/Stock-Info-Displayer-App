@@ -40,11 +40,11 @@ const SearchForm = (props) => {
   
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light">
-      <div className="navbar-brand">Graham Number Stock Displayer</div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
+      <div className="navbar-brand"><a className="nav-link" href="/">Graham Number Stock Displayer</a></div>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <a className="nav-link" href="/about">About</a>
           </li>
           </ul>
         </div>

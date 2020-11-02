@@ -34,8 +34,7 @@ class App extends Component {
 
   locationSearch = (location) => {
     console.log('locationSearch has fired', this.state.searchTicker, location);
-    // eslint-disable-next-line
-    if (location != this.state.searchTicker) {
+    if (location !== this.state.searchTicker) {
       axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${location}&apikey=${apikey}`)
         .then(response => {
           console.log(response.data);
@@ -58,7 +57,7 @@ class App extends Component {
 
   performSearch = (query) => {
     console.log('performSearch has fired', this.state.searchTicker, query);
-    if(query === undefined) {
+    if (query === undefined) {
       axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=aapl&apikey=${apikey}`)
         .then(response => {
           console.log(response.data.length);
@@ -123,9 +122,6 @@ class App extends Component {
     console.log("componentDidMount");
     this.performSearch('aapl');
   }
-
-  //https://sandbox.iexapis.com/stable/stock/aapl/earnings?token=Tsk_a0d9dc43760d4c90974e7ce3945b6b0d&period={}
-  //<Profile companyName={this.state.companyName} ticker={this.state.ticker} businessType={this.state.businessType} websiteUrl={this.state.websiteUrl} />   
 
   render() {
     return (

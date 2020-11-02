@@ -55,7 +55,6 @@ const SearchForm = (props) => {
                 type="search" 
                 onChange={handleValueChange}
                 name="search"
-                //ref={(input) => this.query = input}
                 placeholder="Search"
                 aria-label="Search"
                 required

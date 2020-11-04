@@ -1,4 +1,4 @@
-[
+const Tickers = [
     {
     symbol: "A",
     name: "Agilent Technologies, Inc. Common Stock"
@@ -13192,3 +13192,5 @@
     name: "China Zenix Auto International Limited American Depositary Shares, each representing four ordinary shares."
     }
     ]
+
+export default Tickers;

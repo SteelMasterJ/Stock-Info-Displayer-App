@@ -19,7 +19,7 @@ const Profile = props => (
                 </ul>
             </div>
             <footer>
-                <p className="text-right"><small>2020 JoeyCorp®</small></p>
+                <p className="text-right text-muted"><small>2020 JoeyCorp®</small></p>
             </footer>
         </div>
     </div>

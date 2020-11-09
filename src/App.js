@@ -22,6 +22,7 @@ class App extends Component {
       DividendPerShare: "",
       eps: "",
       error: "",
+      location: "AAPL",
     };
   }
 
@@ -32,31 +33,17 @@ class App extends Component {
     })
   }
 
-  locationSearch = (location) => {
-    console.log('locationSearch has fired', this.state.searchTicker, location);
-    if (location !== this.state.searchTicker) {
-      axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${location}&apikey=${apikey}`)
-        .then(response => {
-          console.log(response.data);
-          this.setState({
-            ticker: response.data.Symbol,
-            companyName: response.data.Name,
-            businessType: response.data.Industry,
-            description: response.data.Description,
-            bookValue: response.data.BookValue,
-            DividendPerShare: response.data.DividendPerShare,
-            eps: response.data.DilutedEPSTTM,
-            searchTicker: location,
-          })
-        })
-        .catch(error => {
-          console.log('Error fetching and parsing data', error);
-        });
+  updateLocationState = (location) => {
+    if (this.state.location !== this.state.ticker) {
+      console.log("updating location State");
+      this.setState({
+        location: location
+      })
     }
   }
 
   performSearch = (query) => {
-    console.log('performSearch has fired', this.state.searchTicker, query);
+    console.log('performSearch has fired, searchTicker state:', this.state.searchTicker, "search params:", query);
     if (query === undefined) {
       axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=aapl&apikey=${apikey}`)
         .then(response => {
@@ -132,7 +119,7 @@ class App extends Component {
         <title>Stock Displayer Pro</title>
         <header className="App-header">
         </header>
-        <SearchBar onSearch={this.performSearch} submitTickerUpdate={this.updateSearchTicker} searchTicker={this.state.searchTicker} locationSearch={this.locationSearch} error={this.state.error}/>
+        <SearchBar onSearch={this.performSearch} submitTickerUpdate={this.updateSearchTicker} submitLocationUpdate={this.updateLocationState} searchTicker={this.state.searchTicker} location={this.state.location} error={this.state.error}/>
         <Switch>
           <Route exact path="/search/:id" render={ () => <Profile 
             companyName={this.state.companyName} 

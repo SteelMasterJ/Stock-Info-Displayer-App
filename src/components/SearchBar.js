@@ -43,11 +43,7 @@ const SearchForm = (props) => {
   
   return (
     <nav className="navbar navbar-expand-sm navbar-light bg-light">
-      <div className="container-fluid d-flex">
-          <div className="col">
             <div className="navbar-brand"><a className="nav-link text-dark" href="/">Graham Number Stock Displayer</a></div>
-          </div>
-        <div className="w-100"></div>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -58,7 +54,6 @@ const SearchForm = (props) => {
             </li>
             </ul>
           </div>
-        <div className="w-100"></div>
           <form className="search-form form-inline ml-auto navbar-text" onSubmit={handleSubmit} >
             {(props.error === "Too many requests, please wait 1 minute" || "Stock Data Not Found, Try Again") ? <div className="text-danger">{props.error}</div> : <div></div> }
             <input 
@@ -74,7 +69,6 @@ const SearchForm = (props) => {
               Search
             </button>
           </form>
-      </div> 
     </nav>  
   );
 }

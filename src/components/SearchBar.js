@@ -8,7 +8,7 @@ const SearchForm = (props) => {
 
   React.useEffect( () => {
     // console.log('location = ', location.pathname, ", location: ", location.pathname.slice(8).toUpperCase(), ", searchTicker: ", props.searchTicker);
-    if (location.pathname !== '/') {
+    if (location.pathname !== '/' && location.pathname !== '/about') {
       console.log('location = ', location.pathname, ", location: ", location.pathname.slice(8).toUpperCase(), ", searchTicker: ", props.searchTicker);
       props.submitLocationUpdate(location.pathname.slice(8).toUpperCase());
       if (location.pathname.slice(8).toUpperCase() !== props.searchTicker) {

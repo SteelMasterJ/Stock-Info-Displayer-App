@@ -19,9 +19,10 @@ class App extends Component {
       businessType: "",
       description: "",
       bookValue: "",
-      DividendPerShare: "",
+      dividend: "",
       eps: "",
       error: "",
+      analystTargetPrice: "",
       location: "AAPL",
     };
   }
@@ -63,9 +64,10 @@ class App extends Component {
               businessType: response.data.Industry,
               description: response.data.Description,
               bookValue: response.data.BookValue,
-              DividendPerShare: response.data.DividendPerShare,
+              dividend: response.data.ForwardAnnualDividendRate,
               eps: response.data.DilutedEPSTTM,
               searchTicker: response.data.Symbol,
+              analystTargetPrice: response.data.AnalystTargetPrice,
               error: "",
             })
           }
@@ -92,9 +94,10 @@ class App extends Component {
             businessType: response.data.Industry,
             description: response.data.Description,
             bookValue: response.data.BookValue,
-            DividendPerShare: response.data.DividendPerShare,
+            dividend: response.data.ForwardAnnualDividendRate,
             eps: response.data.DilutedEPSTTM,
             searchTicker: response.data.Symbol,
+            analystTargetPrice: response.data.AnalystTargetPrice,
             error: "",
           })
         }
@@ -127,9 +130,10 @@ class App extends Component {
             businessType={this.state.businessType} 
             websiteUrl={this.state.websiteUrl} 
             bookValue={this.state.bookValue} 
-            DividendPerShare={this.state.DividendPerShare} 
+            dividend={this.state.dividend}
             eps={this.state.eps} 
             description={this.state.description}
+            analystTargetPrice={this.state.analystTargetPrice}
             performSearch={this.performSearch} /> } 
             />
           <Route exact path="/" render={ () => <Profile 
@@ -138,9 +142,10 @@ class App extends Component {
             businessType={this.state.businessType} 
             websiteUrl={this.state.websiteUrl} 
             bookValue={this.state.bookValue} 
-            DividendPerShare={this.state.DividendPerShare} 
+            dividend={this.state.dividend}
             eps={this.state.eps} 
             description={this.state.description}
+            analystTargetPrice={this.state.analystTargetPrice}
             performSearch={this.performSearch} />} 
             />
           <Route exact path="/about" render={ () => <About/>}/>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
-import apikey from './config';
+// import apikey from './config';
 
 import SearchBar from './components/SearchBar';
 import Profile from './components/Profile';
@@ -114,8 +114,8 @@ class App extends Component {
     console.log('performSearch has fired, searchTicker state:', this.state.searchTicker, "search params:", query);
     if (query === undefined) {
       axios.all([
-        axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=aapl&apikey=${apikey}`), 
-        axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=aapl&apikey=${apikey}`)
+        axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=aapl&apikey=6RZYLKNGHRN5DW3U`), 
+        axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=aapl&apikey=7PEUQ2QLEQSDHMFM`)
       ])
       .then(axios.spread((finData, prices) => {
         // Both requests are now complete
@@ -150,8 +150,8 @@ class App extends Component {
       });
     } else {
       axios.all([
-        axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${query}&apikey=${apikey}`), 
-        axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${query}&apikey=${apikey}`)
+        axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${query}&apikey=6RZYLKNGHRN5DW3U`), 
+        axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${query}&apikey=7PEUQ2QLEQSDHMFM`)
       ])
       .then(axios.spread((finData, prices) => {
         // Both requests are now complete

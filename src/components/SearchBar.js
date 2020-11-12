@@ -12,7 +12,6 @@ const SearchForm = (props) => {
       console.log('location = ', location.pathname, ", location: ", location.pathname.slice(8).toUpperCase(), ", searchTicker: ", props.searchTicker);
       props.submitLocationUpdate(location.pathname.slice(8).toUpperCase());
       if (location.pathname.slice(8).toUpperCase() !== props.searchTicker) {
-        props.onSearchPrice(location.pathname.slice(8));
         props.onSearch(location.pathname.slice(8));
       }
     }
@@ -37,7 +36,6 @@ const SearchForm = (props) => {
     })
     console.log('1st console log ' + formValues.search);
     props.submitTickerUpdate(formValues.search.toUpperCase());
-    props.onSearchPrice(formValues.search);
     props.onSearch(formValues.search);
     e.currentTarget.reset();
     console.log('2nd console log ' + formValues.search);

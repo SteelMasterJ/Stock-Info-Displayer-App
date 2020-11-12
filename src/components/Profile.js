@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Profile = props => (
-    <div className="App">
+    <div className={(props.ticker === "") ? "App invisible" : "App"}>
         <div className="container">
             <div className="card mt-4">
                 <h5 className="card-header">{props.companyName}</h5>

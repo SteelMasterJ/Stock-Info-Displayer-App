@@ -22,7 +22,7 @@ class App extends Component {
       eps: "",
       error: "",
       analystTargetPrice: "",
-      location: "AAPL",
+      location: "",
       currentPrice: "",
     };
   }
@@ -60,7 +60,7 @@ class App extends Component {
         console.log(prices.data);
         if (finData.data.Note === "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.") {
             this.setState({
-              error: "Only 5 searches per minute are allowed, just wait a few seconds before trying again"
+              error: "Only 2 searches per minute are allowed, just wait a few seconds before trying again"
             })
           } else if (JSON.stringify(finData.data) === "{}") {
             this.setState({
@@ -97,7 +97,7 @@ class App extends Component {
         if (finData.data.Note === "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency." 
         || prices.data.Note === "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.") {
             this.setState({
-              error: "Only 5 searches per minute are allowed, just wait a few seconds before trying again"
+              error: "Only 2 searches per minute are allowed, just wait a few seconds before trying again"
             })
           } else if (JSON.stringify(finData.data) === "{}") {
             this.setState({
@@ -128,7 +128,6 @@ class App extends Component {
   //This is so the app loads Apple stock info when the app starts
   componentDidMount() {
     console.log("componentDidMount");
-    this.performSearch('aapl');
   }
 
   render() {

@@ -55,7 +55,7 @@ const SearchForm = (props) => {
             </ul>
           </div>
           <form className="search-form form-inline ml-auto navbar-text" onSubmit={handleSubmit} >
-            {(props.error === "Too many requests, please wait 1 minute" || "Stock Data Not Found, Try Again") ? <div className="text-danger">{props.error}</div> : <div></div> }
+            {(props.error !== "") ? <div className="text-danger">{props.error}</div> : <div></div> }
             <input 
                   className="form-control mr-sm-2"
                   type="search" 

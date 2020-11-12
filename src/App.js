@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
-// import apikey from './config';
 
 import SearchBar from './components/SearchBar';
 import Profile from './components/Profile';
@@ -28,6 +27,7 @@ class App extends Component {
     };
   }
 
+  //function that updates search ticker state in the app
   updateSearchTicker = (tickerValue) => {
     console.log("updating searchTicker");
     this.setState({
@@ -35,6 +35,7 @@ class App extends Component {
     })
   }
 
+  //function that updates the location state in the app
   updateLocationState = (location) => {
     if (this.state.location !== this.state.ticker) {
       console.log("updating location State");
@@ -44,72 +45,8 @@ class App extends Component {
     }
   }
 
-  // performSearch = (query) => {
-  //   console.log('performSearch has fired, searchTicker state:', this.state.searchTicker, "search params:", query);
-  //   if (query === undefined) {
-  //     axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=aapl&apikey=${apikey}`)
-  //       .then(response => {
-  //         console.log(response.data.length);
-  //         if (response.data.Note === "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.") {
-  //           this.setState({
-  //             error: "Only 2 searches per minute are allowed, just wait a few seconds before trying again"
-  //           })
-  //         } else if (JSON.stringify(response.data) === "{}") {
-  //           this.setState({
-  //             error: "Stock Data Not Found, Try Again"
-  //           })
-  //         } else {
-  //           this.setState({
-  //             ticker: response.data.Symbol,
-  //             companyName: response.data.Name,
-  //             businessType: response.data.Industry,
-  //             description: response.data.Description,
-  //             bookValue: response.data.BookValue,
-  //             dividend: response.data.ForwardAnnualDividendRate,
-  //             eps: response.data.DilutedEPSTTM,
-  //             searchTicker: response.data.Symbol,
-  //             analystTargetPrice: response.data.AnalystTargetPrice,
-  //             error: "",
-  //           })
-  //         }
-  //       })
-  //       .catch(error => {
-  //         console.log('Error fetching and parsing data', error);
-  //       });
-  //   } else {
-  //     axios.get(`https://www.alphavantage.co/query?function=OVERVIEW&symbol=${query}&apikey=${apikey}`)
-  //     .then(response => {
-  //       console.log(response.data);
-  //       if (response.data.Note === "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.") {
-  //         this.setState({
-  //           error: "Only 2 searches per minute are allowed, just wait a few seconds before trying again"
-  //         })
-  //       } else if (JSON.stringify(response.data) === "{}") {
-  //         this.setState({
-  //           error: "Stock Data Not Found, Try Again"
-  //         })
-  //       } else {
-  //         this.setState({
-  //           ticker: response.data.Symbol,
-  //           companyName: response.data.Name,
-  //           businessType: response.data.Industry,
-  //           description: response.data.Description,
-  //           bookValue: response.data.BookValue,
-  //           dividend: response.data.ForwardAnnualDividendRate,
-  //           eps: response.data.DilutedEPSTTM,
-  //           searchTicker: response.data.Symbol,
-  //           analystTargetPrice: response.data.AnalystTargetPrice,
-  //           error: "",
-  //         })
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.log('Error fetching and parsing data', error);
-  //     });
-  //   }
-  // }
-
-
+  //function that performs API search and sets state of the app to display
+  //param is just the ticker symbol of the stock but this function works even without one
   performSearch = (query) => {
     console.log('performSearch has fired, searchTicker state:', this.state.searchTicker, "search params:", query);
     if (query === undefined) {
@@ -188,36 +125,10 @@ class App extends Component {
     }
   }
 
-
-
-  // performPriceSearch = (query) => {
-  //   console.log('performPriceSearch has fired, searchTicker state:', this.state.searchTicker, "search params:", query);
-  //   axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${query}&apikey=${apikey}`)
-  //   .then(response => {
-  //     console.log(response.data);
-  //     if (response.data.Note === "Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.") {
-  //       this.setState({
-  //         error: "Only 5 searches per minute are allowed, just wait a few seconds before trying again"
-  //       })
-  //     } else if (JSON.stringify(response.data) === "{}") {
-  //       this.setState({
-  //         error: "Stock Data Not Found, Try Again"
-  //       })
-  //     } else {
-  //       this.setState({
-  //         currentPrice: response.data['Global Quote']['05. price'],
-  //       })
-  //     }
-  //   })
-  //   .catch(error => {
-  //     console.log('Error fetching and parsing data', error);
-  //   });
-  // }
-
+  //This is so the app loads Apple stock info when the app starts
   componentDidMount() {
     console.log("componentDidMount");
     this.performSearch('aapl');
-    // this.performPriceSearch('aapl');
   }
 
   render() {

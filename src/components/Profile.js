@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Profile = props => (
-    <div className={(props.ticker === "") ? "App invisible" : "App"}>
-        <div className="container">
+    <div className="App">
+        {(props.ticker === "") ? <div className="text-center font-weight-bold mt-2">Enter a stock ticker in the search above to see info!</div> : <div className="container">
             <div className="card mt-4">
                 <h5 className="card-header">{props.companyName}</h5>
                 <div className="card-body">
@@ -23,7 +23,7 @@ const Profile = props => (
             <footer>
                 <p className="text-right text-muted"><small>2020 JoeyCorp®</small></p>
             </footer>
-        </div>
+        </div>}
     </div>
 );
 

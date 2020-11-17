@@ -29,7 +29,7 @@ class App extends Component {
 
   //function that updates search ticker state in the app
   updateSearchTicker = (tickerValue) => {
-    console.log("updating searchTicker");
+    //console.log("updating searchTicker");
     this.setState({
       searchTicker: tickerValue
     })
@@ -38,7 +38,7 @@ class App extends Component {
   //function that updates the location state in the app
   updateLocationState = (location) => {
     if (this.state.location !== this.state.ticker) {
-      console.log("updating location State");
+      //console.log("updating location State");
       this.setState({
         location: location
       })
@@ -123,11 +123,6 @@ class App extends Component {
         console.log('Error fetching and parsing data', error);
       });
     }
-  }
-
-  //This is so the app loads Apple stock info when the app starts
-  componentDidMount() {
-    console.log("componentDidMount");
   }
 
   render() {

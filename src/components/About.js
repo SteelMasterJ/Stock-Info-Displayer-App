@@ -12,7 +12,7 @@ const About = props => (
                     <p className="card-text">3. If any of the data turns red that is an indicator of poor or unhealthy financial data. Please note: Graham always recommended using at least 3 years of past Earnings Per Share data, but due to the current state of financial data reports this is not possible and this app only uses the last year of Earnings data.</p>
                     <p className="card-text">4. Compare the current price of the stock displayed in this app and compare it to the Graham Number. If the Graham Number is lower than the current price then that stock may be undervalued!</p>
                     <p className="card-text font-weight-light">Please Note this app is not intended to be used as investment advice, using of this app does NOT necessarily mean you should invest or not invest in something. This app is also not intended to be used as the sole determining factor in any stock purchasing decisions, please do you own research, and invest at your own risk.</p>
-                    <a rel="noopener noreferrer" href={"https://www.investopedia.com/terms/g/graham-number.asp" + props.ticker} className="btn btn-primary" target="_blank">More Info on the Graham Formula</a>
+                    <a rel="noopener noreferrer" href={"https://www.investopedia.com/terms/g/graham-number.asp"} className="btn btn-primary" target="_blank">More Info on the Graham Formula</a>
                 </div>
             </div>
             <footer>

@@ -13,7 +13,7 @@ const Profile = props => (
                 </div>
                 <ul className="list-group list-group-flush card-body">
                     <li className={(props.bookValue > 0) ? "list-group-item" : "list-group-item text-danger"}>Book Value Per Share: ${parseFloat(props.bookValue).toFixed(2)}</li>
-                    <li className="list-group-item">Annual Dividend Rate: ${parseFloat(props.dividend).toFixed(2)}</li>
+                    <li className="list-group-item">Annual Dividend Rate: ${parseFloat(props.dividend).toFixed(2) + " (" + (parseFloat(props.dividend / props.currentPrice * 100).toFixed(2)) + "%)"}</li>
                     <li className={(props.eps > 0) ? "list-group-item" : "list-group-item text-danger"}>Earnings Per Share (Diluted, Trailing Tweleve Months): ${parseFloat(props.eps).toFixed(2)}</li>
                     <li className="list-group-item">Analyst Target Price: {(props.analystTargetPrice === "None") ? "None" : "$" + parseFloat(props.analystTargetPrice).toFixed(2)}</li>
                     <li className="list-group-item">Current Price: ${parseFloat(props.currentPrice).toFixed(2)}</li>

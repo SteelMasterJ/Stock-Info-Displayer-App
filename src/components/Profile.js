@@ -17,7 +17,7 @@ const Profile = props => (
                     <li className={(props.eps > 0) ? "list-group-item" : "list-group-item text-danger"}>Earnings Per Share (Diluted, Trailing Tweleve Months): ${parseFloat(props.eps).toFixed(2)}</li>
                     <li className="list-group-item">Analyst Target Price: {(props.analystTargetPrice === "None") ? "None" : "$" + parseFloat(props.analystTargetPrice).toFixed(2)}</li>
                     <li className="list-group-item">Current Price: ${parseFloat(props.currentPrice).toFixed(2)}</li>
-                    <li className="list-group-item font-weight-bold">Graham Number: {isNaN(Math.sqrt(22.5 * props.bookValue * props.eps)) ? "Not Applicable - See above info" : "$" + parseFloat(Math.sqrt(22.5 * props.bookValue * props.eps)).toFixed(2)}</li>
+                    <li className={(props.currentPrice >= (Math.sqrt(22.5 * props.bookValue * props.eps))) ? "list-group-item font-weight-bold text-warning" : "list-group-item font-weight-bold text-sucess"}>Graham Number: {isNaN(Math.sqrt(22.5 * props.bookValue * props.eps)) ? "Not Applicable - See above info" : "$" + parseFloat(Math.sqrt(22.5 * props.bookValue * props.eps)).toFixed(2)}</li>
                 </ul>
             </div>
             <footer>
